@@ -1,0 +1,86 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Vehiculo {
+    - matricula: String
+    - marca: String
+    - modelo: String
+    - añoFabricacion: int
+    - kilometraje: int
+    - precio: double
+    - estado: enum
+    - propietario: persona
+}
+
+class Persona {
+    - nombre: String
+    - apellidos: String
+    - dni: String
+    - fecha_caducidad_carnet: Date
+    - año_nacimiento: int
+}
+
+class Coche {
+    - numPuertas: int
+    - tipoCombustible: enum
+    - capacidadMaletero: int
+    - traccion: enum
+}
+
+class Sedan {
+    - espacioInterior: double
+    - nivelConfort: enum
+}
+
+class SUV {
+    - capacidadOffroad: boolean
+    - alturaLibreSuelo: double
+}
+
+class Deportivo {
+    - aceleraccion0a100: double
+    - potenciaCV: int
+    - tieneModoPista: boolean
+}
+
+class Moto {
+    - cilindrada: int
+    - peso: int
+    - alturaAsiento: double
+    - tipoTransmision: enum
+}
+
+class Scooter {
+    - espacioBajoAsiento: int
+}
+
+class MotoDeportiva {
+    - velocidadMaxima: double
+    - tieneQuickShifter: boolean
+}
+
+class Camion {
+    - capacidadCarga: double
+    - numEjes: int
+    - longitudRemolque: double
+    - potenciaMotor: int
+}
+
+interface Valorable {
+    + calcularDepreciacion(): double
+}
+
+Vehiculo --> Persona : propietario
+Vehiculo <|-- Coche
+Coche <|-- Sedan
+Coche <|-- SUV
+Coche <|-- Deportivo
+
+Vehiculo <|-- Moto
+Moto <|-- Scooter
+Moto <|-- MotoDeportiva
+
+Vehiculo <|-- Camion
+Vehiculo ..|> Valorable
+
+@enduml
